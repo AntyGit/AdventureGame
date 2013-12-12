@@ -8,9 +8,10 @@ using namespace std;
 bool FileHandler::savePlayer(const string& filename,const Player& player)
 {
  stringstream ss;
+ string targetfile = filename + player_extension;
  //ios_base::openmode mode = ((m_oldFile && m_oldFilename == filename) ? ios::trunc : ios::app);
  ios_base::openmode mode = ios::trunc;
- m_file.open(filename,ios::out | mode);
+ m_file.open(targetfile,ios::out | mode);
 
 if(m_file.is_open())
 {
@@ -31,7 +32,7 @@ if(m_file.is_open())
             ss<<"\n";
         }
 
-     cout<<ss.str(); //För debug
+     //cout<<ss.str(); //Fï¿½r debug
      m_file<<ss.str();
 
      m_file.close();
@@ -44,6 +45,7 @@ if(m_file.is_open())
 void FileHandler::loadPlayer(const string& filename,Player& player)
 {
     stringstream ss;
+    string targetfile = filename + player_extension;
     string line;
     int health;
     unsigned stat;
@@ -51,7 +53,7 @@ void FileHandler::loadPlayer(const string& filename,Player& player)
     Position pos;
     //Player player;
 
-    m_file.open(filename,ios::in );
+    m_file.open(targetfile,ios::in );
 
     if(m_file.is_open())
     {
@@ -94,10 +96,10 @@ bool FileHandler::saveWorld(const string& filename,const World& world)
 {
  //ios_base::openmode mode = ((m_oldFile && m_oldFilename == filename) ? ios::trunc : ios::app);
  ios_base::openmode mode = ios::trunc;
- m_file.open(filename,ios::out | mode);
+ string targetfile = filename + world_extension;
+ m_file.open(targetfile,ios::out | mode);
 
  stringstream ss;
-
  if(m_file.is_open())
  {
      vector<Position> positions = world.getRoomPositions();
@@ -109,7 +111,7 @@ bool FileHandler::saveWorld(const string& filename,const World& world)
 
      }
      m_file<<ss.str();
-     cout<<ss.str()<<"\n"; //debug
+     //cout<<ss.str()<<"\n"; //debug
      m_file.close();
      return true;
  }
@@ -120,8 +122,9 @@ void FileHandler::loadWorld(const string& filename, World& world)
 {
     Position pos;
     //stringstream ss;
+    string targetfile = filename + world_extension;
     string room_str;
-    m_file.open(filename,ios::in );
+    m_file.open(targetfile,ios::in );
 
     if(m_file.is_open())
     {
