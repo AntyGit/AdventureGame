@@ -24,14 +24,14 @@ private:
     std::string serializeItem(const Item&); //save
     Item deserializeItem(std::stringstream&);  //load
     std::string serializeStatus(const Status&); //save
-    //Status deserializeStatus(std::stringstream&); //load (används inte just nu)
+    //Status deserializeStatus(std::stringstream&); //load (anvï¿½nds inte just nu)
     std::string serializeRoom(Position& ,Room const* const); //save
     Room* deserializeRoom(std::stringstream&);  //load
 
     std::fstream m_file;
     std::string m_oldFilename;
-    //const std::string player_extension = ".Player";
-    //const std::string world_extension= ".World";
+    const std::string player_extension = ".Player";
+    const std::string world_extension= ".World";
     bool m_oldFile;
 };
 
